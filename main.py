@@ -6,11 +6,15 @@ ENTRY = (
 )
 
 
+def write_entry(text, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+    with open(os.path.join(output_dir, "entry.txt"), "w", encoding="utf-8") as f:
+        f.write(text)
+
+
 def main():
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(out_dir, exist_ok=True)
-    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
-        f.write(ENTRY)
+    write_entry(ENTRY, out_dir)
 
 
 if __name__ == "__main__":
